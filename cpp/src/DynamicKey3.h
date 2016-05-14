@@ -11,7 +11,7 @@ namespace agora { namespace tools {
         static const uint32_t UNIX_TS_OFFSET = VERSION_LENGTH+SIGNATURE_LENGTH+STATIC_KEY_LENGTH;
         static const uint32_t RANDOM_INT_OFFSET = VERSION_LENGTH+SIGNATURE_LENGTH+STATIC_KEY_LENGTH+UNIX_TS_LENGTH;
         static const uint32_t UID_INT_OFFSET = VERSION_LENGTH+SIGNATURE_LENGTH+STATIC_KEY_LENGTH+UNIX_TS_LENGTH+RANDOM_INT_LENGTH;
-        static const uint32_t EXPIREDTS_INT_OFFSET = VERSION_LENGTH+SIGNATURE_LENGTH+STATIC_KEY_LENGTH+UNIX_TS_LENGTH+RANDOM_INT_LENGTH;
+        static const uint32_t EXPIREDTS_INT_OFFSET = VERSION_LENGTH+SIGNATURE_LENGTH+STATIC_KEY_LENGTH+UNIX_TS_LENGTH+RANDOM_INT_LENGTH+UID_LENGTH;
 
         static const std::string VERSION;
 
@@ -41,6 +41,10 @@ namespace agora { namespace tools {
               this->signature = dynamicKeyString.substr(SIGNATURE_OFFSET, SIGNATURE_LENGTH);
               this->staticKey = dynamicKeyString.substr(STATIC_KEY_OFFSET, STATIC_KEY_LENGTH);
               try {
+                  std::cout<<dynamicKeyString.substr(UNIX_TS_OFFSET, UNIX_TS_LENGTH).c_str()<<std::endl;
+                  std::cout<<dynamicKeyString.substr(RANDOM_INT_OFFSET, RANDOM_INT_LENGTH).c_str()<<std::endl;
+                  std::cout<<dynamicKeyString.substr(UID_INT_OFFSET, UID_LENGTH).c_str()<<std::endl;
+                  std::cout<<dynamicKeyString.substr(EXPIREDTS_INT_OFFSET, UNIX_TS_LENGTH).c_str()<<std::endl;
                   this->unixTs = std::stoul(dynamicKeyString.substr(UNIX_TS_OFFSET, UNIX_TS_LENGTH), nullptr, 10);
                   this->randomInt = std::stoul(dynamicKeyString.substr(RANDOM_INT_OFFSET, RANDOM_INT_LENGTH), nullptr, 16);
                   this->uid = std::stoul(dynamicKeyString.substr(UID_INT_OFFSET, UID_LENGTH), nullptr, 10);
