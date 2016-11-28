@@ -1,5 +1,9 @@
 # AgoraDynamicKey
 
+## NOTICE
+
+This repository has been moved to https://github.com/AgoraIO/AgoraDynamicKey
+
 For joining media channel, use generateMediaChannelKey.
 
 For recording service, use generateRecordingKey.
